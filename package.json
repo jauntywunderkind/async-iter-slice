@@ -1,0 +1,22 @@
+{
+	"name": "async-iter-slice",
+	"version": "1.0.0",
+	"description": "Slice a given piece out of an async/sync iterable",
+	"main": "async-iter-slice.js",
+	"scripts": {
+		"test": "node -r esm .test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://archive.eldergods.com/async-iter-slice"
+	},
+	"keywords": [],
+	"author": "jauntywunderkind",
+	"license": "MIT",
+	"module": "async-iter-slice.js",
+	"esm": true,
+	"devDependencies": {
+		"esm": "^3.2.25",
+		"tape": "^4.11.0"
+	}
+}

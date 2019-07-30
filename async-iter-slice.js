@@ -1,11 +1,17 @@
 "use module"
-export async function* asyncAsyncIterRangeFilter( input, start= 0, end= -1){
+export async function* asyncAsyncIterRangeFilter( inputs, start= 0, end= -1){
 	if( end< 0){
-		len= inputs.length+ end+ 1
+		if( end=== -1){
+			end= Number.POSITIVE_INFINITY
+		}else if( inputs.length=== undefined){
+			throw new Error("TODO: support negative 'end' for non-fixed length")
+		}else{
+			len= inputs.length+ end+ 1
+		}
 	}
 
 	let i= 0
-	for await( const o of input){
+	for await( const o of inputs){
 		// emit this value
 		if( i>= start){
 			yield o
@@ -17,13 +23,13 @@ export async function* asyncAsyncIterRangeFilter( input, start= 0, end= -1){
 	}
 }
 
-export function* syncAsyncIterRangeFilter( input, start, end= -1){
+export function* syncAsyncIterRangeFilter( inputs, start, end= -1){
 	if( end< 0){
 		len= inputs.length+ end+ 1
 	}
 
 	let i= 0
-	for( const o of input){
+	for( const o of inputs){
 		if( i>= start){
 			yield o
 		}
@@ -33,11 +39,11 @@ export function* syncAsyncIterRangeFilter( input, start, end= -1){
 	}
 }
 
-export function asyncIterRangeFilter( input, start= 0, end= -1){
-	if( input[ Symbol.asyncIterator]){
-		return asyncAsyncIterRangeFilter( input, start, end)
+export function asyncIterRangeFilter( inputs, start= 0, end= -1){
+	if( inputs[ Symbol.asyncIterator]){
+		return asyncAsyncIterRangeFilter( inputs, start, end)
 	}else{
-		return syncAsyncIterRangeFilter( input, start, end)
+		return syncAsyncIterRangeFilter( inputs, start, end)
 	}
 }
 
