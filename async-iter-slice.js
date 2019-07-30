@@ -1,5 +1,5 @@
 "use module"
-export async function* asyncAsyncIterRangeFilter( inputs, start= 0, end){
+export async function* asyncAsyncIterSlice( inputs, start= 0, end){
 	let buffer
 	let fill
 	if( end< 0){
@@ -37,7 +37,7 @@ export async function* asyncAsyncIterRangeFilter( inputs, start= 0, end){
 	}
 }
 
-export function* syncAsyncIterRangeFilter( inputs, start, end){
+export function* syncAsyncIterSlice( inputs, start, end){
 	let buffer
 	let fill
 	if( end< 0){
@@ -75,23 +75,23 @@ export function* syncAsyncIterRangeFilter( inputs, start, end){
 	}
 }
 
-export function asyncIterRangeFilter( inputs, start= 0, end){
+export function asyncIterSlice( inputs, start= 0, end){
 	if( inputs[ Symbol.asyncIterator]){
-		return asyncAsyncIterRangeFilter( inputs, start, end)
+		return asyncAsyncIterSlice( inputs, start, end)
 	}else{
-		return syncAsyncIterRangeFilter( inputs, start, end)
+		return syncAsyncIterSlice( inputs, start, end)
 	}
 }
 
 export {
-	asyncIterRangeFilter as default,
-	asyncIterRangeFilter as AsyncIterRangeFilter,
-	asyncIterRangeFilter as rangeFilter,
-	asyncIterRangeFilter as RangeFilter,
-	asyncAsyncIterRangeFilter as AsyncAsyncIterRangeFilter,
-	asyncAsyncIterRangeFilter as asyncRangeFilter,
-	asyncAsyncIterRangeFilter as AsyncRangeFilter,
-	syncAsyncIterRangeFilter as SyncIterRangeFilter,
-	syncAsyncIterRangeFilter as syncRangeFilter,
-	syncAsyncIterRangeFilter as SyncRangeFilter
+	asyncIterSlice as default,
+	asyncIterSlice as AsyncIterSlice,
+	asyncIterSlice as rangeFilter,
+	asyncIterSlice as Slice,
+	asyncAsyncIterSlice as AsyncAsyncIterSlice,
+	asyncAsyncIterSlice as asyncSlice,
+	asyncAsyncIterSlice as AsyncSlice,
+	syncAsyncIterSlice as SyncIterSlice,
+	syncAsyncIterSlice as syncSlice,
+	syncAsyncIterSlice as SyncSlice
 }
